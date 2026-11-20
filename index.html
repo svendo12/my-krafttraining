@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07549a"><link rel="manifest" href="manifest.webmanifest">
+<title>ReuBa PHYSIOTEAM</title>
+<style>
+:root{--bg:#f3f5f2;--card:#fff;--ink:#17231e;--muted:#64736b;--green:#238653;--orange:#c77a18;--red:#c74747;--line:#dce4de}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom)}
+header{background:#14251f;color:white;margin:0 -14px 16px;padding:22px 18px 18px}h1{font-size:23px;margin:0 0 4px}header p{margin:0;color:#c6d5cc;font-size:13px}
+main{max-width:760px;margin:auto}.panel,.item{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:12px 0}.panel h2{font-size:18px;margin:0 0 12px}
+label{display:block;font-size:13px;color:var(--muted);margin:9px 0 4px}input,select,textarea{width:100%;padding:11px;border:1px solid #cbd6ce;border-radius:9px;background:white;font:inherit;color:var(--ink)}button{border:0;border-radius:10px;padding:11px 14px;background:#1e6c48;color:white;font:600 14px system-ui;cursor:pointer;margin:5px 5px 0 0}button.secondary{background:#e8eee9;color:#244333}button.danger{background:#a93636}.item{display:flex;justify-content:space-between;gap:10px;align-items:center}.item h3{margin:0 0 3px;font-size:16px}.sub{font-size:13px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}.green{background:var(--green)}.orange{background:var(--orange)}.red{background:var(--red)}.status{font-size:13px;font-weight:600}.tabs{display:flex;gap:6px;flex-wrap:wrap}.tabs button{flex:1;min-width:90px}.hidden{display:none}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:430px){.grid{grid-template-columns:1fr}}canvas{width:100%;height:220px;border:1px solid var(--line);border-radius:10px;background:#fff}small{color:var(--muted)}
+
+/* Version 1.5.1: ReuBa-inspired header and consistent accessible inputs */
+:root{--bg:#f5fafd;--ink:#202b33;--muted:#4b5862;--line:#d2eaf8}
+header{background:#d2eaf8;color:#07549a;text-align:center;padding:26px 18px 22px}
+header h1{color:#07549a;font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,6vw,38px);line-height:1.2}
+header p{color:#111!important;font-size:18px;line-height:1.4}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid>div{min-width:0}
+input,select,textarea{display:block;min-width:0;max-width:100%;font-size:18px;min-height:54px}
+input[type="date"]{width:100%;min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;padding:11px 8px;box-sizing:border-box}
+header.hidden{display:none!important}
+
+/* Version 1.5.2: fixed accessible bottom navigation and matching page headings */
+body{padding-bottom:calc(100px + env(safe-area-inset-bottom));}
+.tabs{position:fixed;bottom:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;flex-wrap:nowrap;background:#d2eaf8;border-top:1px solid #a9cce2;padding:10px 8px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -3px 14px #07549a18;}
+.tabs button{min-width:0;min-height:56px;margin:0;padding:8px 3px;border-radius:10px;background:#07549a;color:#fff;font-size:clamp(12px,3vw,16px);line-height:1.15;overflow-wrap:anywhere;}
+.tabs button.secondary{background:#fff;color:#07549a;border:1px solid #a8c8de;}
+.section-heading{background:#d2eaf8;color:#07549a;text-align:center;margin:0 -14px 16px;padding:26px 16px 22px;}
+.section-heading h2{font-family:Georgia,"Times New Roman",serif;color:#07549a;font-size:clamp(28px,6vw,38px);line-height:1.2;margin:0;}
+@media(min-width:760px){.section-heading{margin-left:0;margin-right:0;border-radius:0 0 14px 14px;}}
+/* v1.5.3 accessibility, language menu and light-blue actions */
+body{font-size:18px}label{font-size:17px}button{font-size:17px;min-height:52px} .sub,.status{font-size:16px}
+#addExercise,#saveLog{background:#d2eaf8;color:#07549a;border:2px solid #9dc8e4;font-size:18px;font-weight:700;min-height:56px}
+#addExercise:focus-visible,#saveLog:focus-visible,.menu-toggle:focus-visible{outline:3px solid #07549a;outline-offset:3px}
+.menu-toggle{position:fixed;right:12px;top:calc(8px + env(safe-area-inset-top));z-index:202;min-width:52px;min-height:52px;padding:8px;background:#07549a;color:#fff;border:2px solid #fff;border-radius:12px;font-size:26px;line-height:1}
+.settings-menu{position:fixed;right:12px;top:calc(66px + env(safe-area-inset-top));z-index:201;width:min(310px,calc(100vw - 24px));background:#fff;border:2px solid #a8c8de;border-radius:14px;padding:16px;box-shadow:0 8px 28px #07549a30}
+.settings-menu[hidden]{display:none!important}.settings-menu h2{font-size:22px;margin:0 0 12px;color:#07549a}.settings-menu label{font-size:18px}.settings-menu select{min-height:56px}
+header,.section-heading{padding-right:70px;padding-left:18px}
+/* v1.5.5: reference-inspired ReuBa branding, without tagline */
+#appHeader{padding-top:30px;padding-bottom:26px}
+.brand-heading{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:clamp(7px,2vw,13px);margin:0;line-height:1.15}
+.brand-reuba{font-family:Georgia,"Times New Roman",serif;font-size:clamp(35px,8vw,48px);font-weight:700;letter-spacing:-.025em;color:#07549a}
+.brand-physio{font-family:"Helvetica Neue",Arial,sans-serif;font-size:clamp(16px,3.9vw,23px);font-weight:300;letter-spacing:.035em;color:#111}
+</style></head>
+<body><button type="button" class="menu-toggle" id="menuToggle" aria-label="Einstellungen öffnen" aria-expanded="false" aria-controls="settingsMenu">☰</button>
+<aside class="settings-menu" id="settingsMenu" hidden><h2 data-i18n="settings">Einstellungen</h2><label for="languageSelect" data-i18n="language">Sprache / Language</label><select id="languageSelect"><option value="de">Deutsch</option><option value="en">English</option></select></aside>
+<header id="appHeader"><h1 class="brand-heading"><span class="brand-reuba">ReuBa</span><span class="brand-physio">PHYSIOTEAM</span></h1></header><main>
+<nav class="tabs" aria-label="Hauptnavigation"><button data-tab="status" data-i18n="overview">Übersicht</button><button data-tab="log" class="secondary" data-i18n="trainingNav">Training eintragen</button><button data-tab="charts" class="secondary" data-i18n="progressNav">Fortschritt</button><button data-tab="history" class="secondary" data-i18n="historyNav">Verlauf</button></nav>
+<section id="status" class="tab"><div class="panel"><h2 data-i18n="exercises">Geräte & Übungen</h2><div id="exerciseList"></div><label data-i18n="newExercise">Neue Übung / neues Gerät</label><input id="newExercise" placeholder="z. B. Beinstrecker" data-i18n-placeholder="exercisePlaceholder"><button id="addExercise" data-i18n="addExercise">Übung hinzufügen</button></div></section>
+<section id="log" class="tab hidden"><div class="section-heading"><h2 data-i18n="saveTraining">Training speichern</h2></div><div class="panel"><label data-i18n="exercise">Übung / Gerät</label><select id="logExercise"></select><div class="grid"><div><label data-i18n="date">Datum</label><input type="date" id="logDate"></div><div><label data-i18n="weight">Gewicht (kg)</label><input type="number" id="weight" min="0" step="0.5" placeholder="z. B. 40" data-i18n-placeholder="weightPlaceholder"></div><div><label data-i18n="sets">Sätze</label><input type="number" id="sets" min="1" value="3"></div><div><label data-i18n="reps">Wiederholungen je Satz</label><input type="number" id="reps" min="1" value="10"></div></div><label data-i18n="notes">Notiz (optional)</label><textarea id="notes" rows="2"></textarea><button id="saveLog" data-i18n="saveTraining">Training speichern</button></div></section>
+<section id="charts" class="tab hidden"><div class="section-heading"><h2 data-i18n="progress">Leistungsentwicklung</h2></div><div class="panel"><label data-i18n="chooseExercise">Übung auswählen</label><select id="chartExercise"></select><p class="sub" data-i18n="chartInfo">Gewicht und Wiederholungen je Satz im zeitlichen Verlauf. Einträge ohne Gewichtsangabe erscheinen nur im Wiederholungsdiagramm.</p><h3 data-i18n="weight">Gewicht (kg)</h3><canvas id="weightChart" width="700" height="220"></canvas><h3 data-i18n="reps">Wiederholungen je Satz</h3><canvas id="repsChart" width="700" height="220"></canvas></div></section>
+<section id="history" class="tab hidden"><div class="section-heading"><h2 data-i18n="history">Trainingsverlauf</h2></div><div class="panel"><div id="historyList"></div><button class="secondary" id="export" data-i18n="export">Backup exportieren</button><label data-i18n="import">Backup wiederherstellen (JSON)</label><input type="file" id="importFile" accept="application/json"></div></section>
+</main>
+<script>
+const translations={
+ de:{settings:'Einstellungen',language:'Sprache / Language',overview:'Übersicht',trainingNav:'Training',progressNav:'Fortschritt',historyNav:'Verlauf',exercises:'Geräte & Übungen',newExercise:'Neue Übung / neues Gerät',addExercise:'Übung hinzufügen',saveTraining:'Training speichern',exercise:'Übung / Gerät',date:'Datum',weight:'Gewicht (kg)',sets:'Sätze',reps:'Wiederholungen je Satz',notes:'Notiz (optional)',progress:'Leistungsentwicklung',chooseExercise:'Übung auswählen',chartInfo:'Gewicht und Wiederholungen je Satz im zeitlichen Verlauf. Einträge ohne Gewichtsangabe erscheinen nur im Wiederholungsdiagramm.',history:'Trainingsverlauf',export:'Backup exportieren',import:'Backup wiederherstellen (JSON)',exercisePlaceholder:'z. B. Beinstrecker',weightPlaceholder:'z. B. 40',never:'Noch nie trainiert',agoOne:'vor 1 Tag',agoDays:n=>`vor ${n} Tagen`,emptyExercises:'Deine Übungsliste ist noch leer. Füge unten deine erste Übung hinzu.',remove:'Entfernen',emptyHistory:'Noch keine Trainings eingetragen.',duplicate:'Diese Übung gibt es bereits.',removeConfirm:ex=>`„${ex}“ aus der aktiven Übungsliste entfernen? Frühere Trainingseinträge bleiben im Verlauf erhalten.`,required:'Bitte Übung, Sätze und Wiederholungen ausfüllen.',saved:'Training gespeichert.',noData:'Noch keine Daten vorhanden',backupConfirm:'Aktuelle Daten durch Backup ersetzen?',restored:'Backup wiederhergestellt.',invalid:'Backup-Datei ist ungültig.',openSettings:'Einstellungen öffnen',closeSettings:'Einstellungen schließen'},
+ en:{settings:'Settings',language:'Language / Sprache',overview:'Overview',trainingNav:'Training',progressNav:'Progress',historyNav:'History',exercises:'Machines & Exercises',newExercise:'New exercise / machine',addExercise:'Add exercise',saveTraining:'Save workout',exercise:'Exercise / Machine',date:'Date',weight:'Weight (kg)',sets:'Sets',reps:'Repetitions per set',notes:'Notes (optional)',progress:'Performance progress',chooseExercise:'Select exercise',chartInfo:'Weight and repetitions per set over time. Entries without weight are only shown in the repetitions chart.',history:'Workout history',export:'Export backup',import:'Restore backup (JSON)',exercisePlaceholder:'e.g. Leg extension',weightPlaceholder:'e.g. 40',never:'Never trained',agoOne:'1 day ago',agoDays:n=>`${n} days ago`,emptyExercises:'Your exercise list is empty. Add your first exercise below.',remove:'Remove',emptyHistory:'No workouts logged yet.',duplicate:'This exercise already exists.',removeConfirm:ex=>`Remove “${ex}” from your exercise list? Previous workouts will remain in your history.`,required:'Please enter an exercise, sets and repetitions.',saved:'Workout saved.',noData:'No data available yet',backupConfirm:'Replace your current data with this backup?',restored:'Backup restored.',invalid:'Invalid backup file.',openSettings:'Open settings',closeSettings:'Close settings'}
+};
+let language=localStorage.getItem('myKrafttraining.language.v1')==='en'?'en':'de';
+const tr=(key,...args)=>{let v=translations[language][key];return typeof v==='function'?v(...args):v};
+function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=tr(el.dataset.i18n)});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=tr(el.dataset.i18nPlaceholder)});document.getElementById('languageSelect').value=language;document.getElementById('menuToggle').setAttribute('aria-label',tr(document.getElementById('settingsMenu').hidden?'openSettings':'closeSettings'));render()}
+const menuToggle=document.getElementById('menuToggle'),settingsMenu=document.getElementById('settingsMenu');
+menuToggle.onclick=()=>{settingsMenu.hidden=!settingsMenu.hidden;menuToggle.setAttribute('aria-expanded',String(!settingsMenu.hidden));menuToggle.setAttribute('aria-label',tr(settingsMenu.hidden?'openSettings':'closeSettings'))};
+document.getElementById('languageSelect').onchange=e=>{language=e.target.value;localStorage.setItem('myKrafttraining.language.v1',language);applyLanguage()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!settingsMenu.hidden)menuToggle.click()});
+document.addEventListener('click',e=>{if(!settingsMenu.hidden&&!settingsMenu.contains(e.target)&&!menuToggle.contains(e.target))menuToggle.click()});
+const KEY='myKrafttraining.entries.v1', EXKEY='myKrafttraining.customExercises.v1';
+const defaults=[];
+let entries=JSON.parse(localStorage.getItem(KEY)||'[]'), custom=JSON.parse(localStorage.getItem(EXKEY)||'[]');
+const $=id=>document.getElementById(id), today=()=>new Date().toISOString().slice(0,10);
+function exercises(){return [...defaults,...custom]}
+function save(){localStorage.setItem(KEY,JSON.stringify(entries));localStorage.setItem(EXKEY,JSON.stringify(custom));render()}
+function lastDate(ex){return entries.filter(x=>x.exercise===ex).map(x=>x.date).sort().at(-1)||''}
+function daysSince(d){return d?Math.max(0,Math.floor((new Date(today())-new Date(d))/86400000)):null}
+function status(ex){let n=daysSince(lastDate(ex));return n===null?['red',tr('never')]:n<=2?['green',(n===1?tr('agoOne'):tr('agoDays',n))]:n<=4?['orange',tr('agoDays',n)]:['red',tr('agoDays',n)]}
+function render(){let sorted=exercises().slice().sort((a,b)=>{let da=daysSince(lastDate(a)),db=daysSince(lastDate(b));return (da===null?-1: -da)-(db===null?-1:-db)});
+$('exerciseList').innerHTML=sorted.map(ex=>{let [c,t]=status(ex);let del=`<button class="danger" data-delete="${esc(ex)}">${tr('remove')}</button>`;return `<div class="item"><div><h3><span class="dot ${c}"></span>${esc(ex)}</h3><div class="status">${t}</div></div>${del}</div>`}).join('')||`<p class="sub">${tr('emptyExercises')}</p>`;
+['logExercise','chartExercise'].forEach(id=>{let old=$(id).value;$(id).innerHTML=exercises().map(x=>`<option>${esc(x)}</option>`).join('');if(exercises().includes(old))$(id).value=old});
+$('historyList').innerHTML=entries.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<div class="item"><div><b>${esc(x.exercise)}</b><div class="sub">${x.date} · ${x.weight!==''?x.weight+' kg · ':''}${x.sets} × ${x.reps}${x.notes?' · '+esc(x.notes):''}</div></div></div>`).join('')||`<p class="sub">${tr('emptyHistory')}</p>`;
+drawCharts()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));$(b.dataset.tab).classList.remove('hidden');$('appHeader').classList.toggle('hidden',b.dataset.tab!=='status');document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('secondary',x!==b));render()});
+$('addExercise').onclick=()=>{let v=$('newExercise').value.trim();if(!v)return;if(exercises().some(x=>x.toLowerCase()===v.toLowerCase())){alert(tr('duplicate'));return}custom.push(v);$('newExercise').value='';save()};
+$('exerciseList').onclick=e=>{let ex=e.target.dataset.delete;if(ex&&confirm(tr('removeConfirm',ex))){custom=custom.filter(x=>x!==ex);save()}};
+$('logDate').value=today();$('saveLog').onclick=()=>{let exercise=$('logExercise').value,weight=$('weight').value,sets=+$('sets').value,reps=+$('reps').value;if(!exercise||!sets||!reps){alert(tr('required'));return}entries.push({exercise,date:$('logDate').value||today(),weight,sets,reps,notes:$('notes').value});$('weight').value='';$('notes').value='';save();alert(tr('saved'))};
+function draw(canvas,vals,label){let c=$(canvas),ctx=c.getContext('2d'),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);ctx.strokeStyle='#dce4de';ctx.fillStyle='#64736b';ctx.font='12px sans-serif';for(let i=0;i<5;i++){let y=18+i*(h-45)/4;ctx.beginPath();ctx.moveTo(42,y);ctx.lineTo(w-12,y);ctx.stroke()}if(!vals.length){ctx.fillText(tr('noData'),55,110);return}let max=Math.max(...vals.map(v=>v.y),1),min=Math.min(0,...vals.map(v=>v.y));let span=max-min||1;ctx.fillText(label,8,13);ctx.strokeStyle='#238653';ctx.lineWidth=3;ctx.beginPath();vals.forEach((v,i)=>{let x=45+(vals.length===1?0:i*(w-70)/(vals.length-1)),y=18+(max-v.y)*(h-48)/span;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();ctx.fillStyle='#1e6c48';vals.forEach((v,i)=>{let x=45+(vals.length===1?0:i*(w-70)/(vals.length-1)),y=18+(max-v.y)*(h-48)/span;ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#64736b';ctx.fillText(v.date.slice(5),x-16,h-10);ctx.fillStyle='#1e6c48'})}
+function drawCharts(){let ex=$('chartExercise').value||exercises()[0],a=ex?entries.filter(x=>x.exercise===ex).sort((a,b)=>a.date.localeCompare(b.date)):[];draw('weightChart',a.filter(x=>x.weight!=='').map(x=>({date:x.date,y:+x.weight})),'kg');draw('repsChart',a.map(x=>({date:x.date,y:+x.reps})),tr('reps'))}
+$('chartExercise').onchange=drawCharts;
+$('export').onclick=()=>{let blob=new Blob([JSON.stringify({entries,custom},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='krafttraining-backup.json';a.click();URL.revokeObjectURL(a.href)};
+$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let d=JSON.parse(await f.text());if(!Array.isArray(d.entries)||!Array.isArray(d.custom))throw Error();if(!confirm(tr('backupConfirm')))return;entries=d.entries;custom=d.custom;save();alert(tr('restored'))}catch{alert(tr('invalid'))}};
+applyLanguage();if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+</script></body></html>

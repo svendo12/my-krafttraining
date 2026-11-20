@@ -1,0 +1,9 @@
+{
+  "name": "ReuBa PHYSIOTEAM",
+  "short_name": "ReuBa",
+  "start_url": "./?v=155",
+  "display": "standalone",
+  "background_color": "#f5fafd",
+  "theme_color": "#07549a",
+  "lang": "de"
+}
